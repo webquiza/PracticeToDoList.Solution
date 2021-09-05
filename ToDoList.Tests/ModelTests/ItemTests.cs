@@ -1,7 +1,7 @@
-using System;
-using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using ToDoList.Models;
+using System; //We have to add this to use Console.WriteLine().
 
 namespace ToDoList.Tests
 {
@@ -26,9 +26,9 @@ namespace ToDoList.Tests
     {
 			//Arrange
       string description = "Walk the dog.";
-      Item newItem = new Item(description);
 
 			//Act
+			Item newItem = new Item(description);
       string result = newItem.Description;
 
 			//Assert
@@ -54,13 +54,42 @@ namespace ToDoList.Tests
 		[TestMethod]
 		public void GetAll_ReturnsEmptyList_ItemList()
 		{
-			// Arrange
+			//Arrange
 			List<Item> newList = new List<Item> { };
 
 			// Act
 			List<Item> result = Item.GetAll();
 
+			// Console.WriteLine() is a useful debugging tool, but should not be expected to output useful information on successful tests.
+
+			/*foreach (Item thisItem in result)
+			{
+				Console.WriteLine("Output from empty list GetAll test: " + thisItem.Description);
+			}*/
+
 			// Assert
+			CollectionAssert.AreEqual(newList, result);
+		}
+
+		[TestMethod]
+		public void GetAll_ReturnsItems_ItemList()
+		{
+			//Arrange
+			string description01 = "Walk the dog";
+			string description02 = "Wash the dishes";
+			Item newItem1 = new Item(description01);
+			Item newItem2 = new Item(description02);
+			List<Item> newList = new List<Item> { newItem1, newItem2 };
+
+			//Act
+			List<Item> result = Item.GetAll();
+
+			/*foreach (Item thisItem in result)
+			{
+				Console.WriteLine("Output from second GetAll test: " + thisItem.Description);
+			}*/
+
+			//Assert
 			CollectionAssert.AreEqual(newList, result);
 		}
 
