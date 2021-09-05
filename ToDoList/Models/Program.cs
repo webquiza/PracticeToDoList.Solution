@@ -11,7 +11,7 @@ public class Program
     Console.WriteLine("Type 'quit' to exit");
     
     string answer;
-    while (answer = Console.ReadLine() != "quit")
+    while ((answer = Console.ReadLine()) != "quit")
     {
       // string result = answer;
 
